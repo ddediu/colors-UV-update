@@ -1,0 +1,26 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# cached_results
+figures
+*.html
+colors_UV_update*_cache
+#cached_results
+
+# mac files
+.DS_Store
+
+# big files available from https://github.com/ddediu/colors-UV/tree/master/input_files
+# openstreet data
+/input_files/openstreet/lakes-raster-reduced-3857.zip
+/input_files/openstreet/ocean-raster-reduced-3857.zip
+/input_files/openstreet/river-raster-reduced-3857.zip
+# wc5
+/input_files/wc5/bio_5m_bil.zip
+# noaa humidity
+/input_files/noaa-humidity.nc
+
+# the actual paper
+/paper/

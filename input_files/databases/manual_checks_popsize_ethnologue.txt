@@ -1,0 +1,41 @@
+Here we manually check the languages for which the "ethnologue" and "wikidata/wikipedia" numbers differ by at least 1 order of magnitude.
+We use the WayBackMachine (https://archive.org/web/) to retreive the latest free version of Ethnologue, in particular the snapshot from 6/1/2013:
+
+glottoco language: ethnologue estimate
+kurd1259 Kurdish: 16,025,505 <- error
+nepa1254 Nepali: 13,875,700 <- error
+alba1267 Albanian: 5,825,018 <- error
+basq1248 Basque: 658,960 <- error
+tzot1259 Tzotzil: 60,000 <- error
+mari1278 Mari: 564,569 <- error
+swah1253 Swahili: 787,630 <- genuine difference
+moks1248 Moksha: 614,000 <- genuine difference
+erzy1239 Erzya: 696,630 <- error
+bura1292 Bura-Pabir: 200,000 <- genuine difference
+mafa1239 Mafa: 140,910 <- genuine difference
+rian1262 Riang (India): 5,900 <- error
+adan1251 Adang: 31,800 <- genuine difference
+hadz1240 Hadza: 800 <- error
+labi1245 Labir: 13,000 <- genuine difference
+boly1239 Bolyu: 10,000 <- genuine difference
+akhv1239 Akhvakh: 6,500 <- genuine difference
+chon1284 Chong of Chanthaburi: 5,500 <- genuine difference
+botl1242 Botlikh: 5,500 <- genuine difference
+ghod1238 Godoberi: 3,000 <- genuine difference
+saya1246 Saya: 7,000 <- both seem off
+phon1246 Phong-Kniang: 1,000 <- genuine difference
+hawa1245 Hawaiian: 1,000 <- genuine difference (wikipedia seems to report ethnic numbers)
+naue1237 Nauete: 1,000 <- genuine difference
+kaik1246 Kaike: 790 <- genuine difference
+bard1255 Bardi: 380 <- genuine difference
+wikn1245 Wik-Ngathana: 130 <- genuine difference
+gurd1238 Gurdjar: 30 <- genuine difference
+ngad1258 Ngadjunmaya: 10 <- genuine difference
+ainu1240 Hokkaido Ainu: 15 <- genuine difference (wikipedia seems to report ethnic numbers)
+gami1243 Yuwaalaraay-Gamilaraay: 3 <- genuine difference
+
+... the remaning 7 seem ok (genuine differences)
+
+So: need to fix the following: 
+kurd1259 nepa1254 alba1267 basq1248 tzot1259 mari1278 erzy1239 rian1262 hadz1240 saya1246
+using the scirep_paper/updates.csv mechanism.

@@ -1,0 +1,22 @@
+***
+Population size
+***
+
+For both `clics` and `other` database, population size was gathered using the following method:
+
+ - two columns were filled: 
+ 
+      - one using information on Glottolog [https://glottolog.org/] (using iso 639-3 in links [https://iso639-3.sil.org/code/fra]. From there, we accessed Multitree [http://www.multitree.org/] in denotations part, where the number of speakers was indicated. We always used the "total across all countries", if available. Few exceptions were made: the number of speakers for spanish, portuguese, french and english were computed only in Spain, Portugal, France and UK.
+      
+      - one using information from Wikipedia/Wikidata, accessed from glottolog. If many data was available, we chose according to the following criteria: 1) the data that has the most references, 2) the latest data and 3) if two data has the same number of reference and the same year, I selected the bigger value. We used preferentially Wikidata over Wikipedia.
+      
+ - once these two columns were filled, a lot of data was still missing, in both columns. When data was present in the Wiki column but not Ethnologue column, we pasted the information from one column to another, and vice versa.
+ 
+ - To summarize, the two columns present in the databases are the following:
+    - popsize_wiki: mostly data from Wikipedia/Wikidata, but occasionnally data from Ethnologue when missing data
+    - popsize_ethno: mostly data from Ethnologue, but occasionnally data from Wikipedia/Wikidata when missing data
+    
+    
+For `scirep_paper` database, please refer to the method of Josserand et al (2021). We used the same data, originally called log_popSize, which was population size data extracted from Ethnologue. We unlog it to use the same columns as previously (popsize_ethno) and we filled the column (popsize_wiki) with NA. 
+  
+  

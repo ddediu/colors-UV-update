@@ -1,0 +1,12 @@
+glottocode;variable;new_value;reason
+nene1249;exists_blue;yes;consultation with expert + check in other databases
+kurd1259;log_popSize;16.58969;manual check in last free version of Ethnologue & compute log(16025505 + 1)
+nepa1254;log_popSize;16.44565;manual check in last free version of Ethnologue & compute log(13875700 + 1)
+alba1267;log_popSize;15.57767;manual check in last free version of Ethnologue & compute log(5825018 + 1)
+basq1248;log_popSize;13.39842;manual check in last free version of Ethnologue & compute log(658960 + 1)
+tzot1259;log_popSize;11.00212;manual check in last free version of Ethnologue & compute log(60000 + 1)
+mari1278;log_popSize;13.24382;manual check in last free version of Ethnologue & compute log(564569 + 1)
+erzy1239;log_popSize;13.45401;manual check in last free version of Ethnologue & compute log(696630 + 1)
+rian1262;log_popSize;8.682877;manual check in last free version of Ethnologue & compute log(5900 + 1)
+hadz1240;log_popSize;6.685861;manual check in last free version of Ethnologue & compute log(800 + 1)
+saya1246;log_popSize;8.853808;manual check in last free version of Ethnologue & compute log(7000 + 1)
