@@ -5,7 +5,7 @@
 
 # cached_results
 figures
-*.html
+#*.html
 colors_UV_update*_cache
 #cached_results
 

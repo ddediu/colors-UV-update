@@ -15,6 +15,13 @@ output:
   pdf_document:
     toc: yes
     toc_depth: '6'
+  github_document:
+    html_preview: true
+    toc: yes
+    toc_depth: 6
+    dev: jpeg
+    fig_width: 11
+    fig_height: 6
 editor_options:
   chunk_output_type: console
 bibliography: bibliography.bib
