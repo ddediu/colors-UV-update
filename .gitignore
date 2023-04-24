@@ -22,5 +22,9 @@ colors_UV_update*_cache
 # noaa humidity
 /input_files/noaa-humidity.nc
 
+# the lexibank 0.2 data is too big (even 7zipd) and anyways there are instructions about how to download it
+input_files/databases/lexibank/lexibank-analysed.7z
+
 # the actual paper
 /paper/
+

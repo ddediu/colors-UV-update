@@ -18,8 +18,6 @@
 ## Load the language data ####
 ##
 
-setwd("C:/Users/Mathilde JOSSERAND/Documents/Replic_colors/")
-
 d_colors <- read.table("./input_files/databases/data_colors.csv", header=TRUE, sep=";", quote='"', stringsAsFactors=FALSE); # comma-separated double-quoted CVS file
 
 # Alternative view of the globe: all longitudes < 0 are "flipped" to positive values (for new databases: other and clics)

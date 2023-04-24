@@ -1,0 +1,15 @@
+Instructions for downloading and pre-processing the Lexibank v0.2 data as per Reviewer 2:
+
+```
+$ git clone https://github.com/lexibank/lexibank-analysed
+$ pip install pycldf
+$ cd lexibank-analysed
+$ git checkout v0.2
+$ cldf createdb cldf/lexicon-metadata.json lexibank.sqlite
+$ sqlite3 lexibank.sqlite3 <.mode csv
+select l.cldf_id, l.cldf_glottocode, cldf_parameterreference, cldf_codereference from valuetable, languagetable as l where cldf_languagereference = l.cldf_id and cldf_parameterreference = "GreenAndBlue";
+EOF
+```
+
+Note: the last line I executed interactively in `DB Browser for SQLite` and I exported the results as the TAB-separated CSV file `lexibank-GreenAndBlue.csv` to be used in the analysis.
+

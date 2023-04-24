@@ -1,0 +1,1 @@
+The supplementary data of Blasi et al. (2019) Science doi:10.1126/science.aav3218, downloaded from https://osf.io/fb58m, in particular the CSV file `data_labiodentals_worldwide.csv` containing the subsistence strategy per language.
