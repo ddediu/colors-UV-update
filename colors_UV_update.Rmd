@@ -2692,6 +2692,10 @@ png(paste0("./paper/",file_name,".png"), width=8, height=4, units="in", res=300)
 p;
 dev.off();
 
+# tiff(paste0("./paper/",file_name,".tiff"), width=8, height=4, units="in", res=300, compression="lzw"); # for main paper
+# p;
+# dev.off();
+
 
 pmain <- ggplot() + theme_bw() +
   geom_polygon(data=mapWorld, aes(x=long, y=lat, group=group), fill="seashell3") + xlab("Longitude (°)") + ylab("Latitude (°)") + # landmasses
@@ -3272,6 +3276,10 @@ png(paste0("./paper/",file_name,".png"), width=8, height=4, units="in", res=300)
 #jpeg(paste0("./paper/",file_name,".jpg"), width=8, height=4, units="in", res=300, quality=85); # for SI
 p;
 dev.off();
+
+#tiff(paste0("./paper/",file_name,".tiff"), width=8, height=4, units="in", res=300, compression="lzw"); # for main paper
+#p;
+#dev.off();
 ```
 
 
@@ -9708,6 +9716,18 @@ grid.arrange(
   plot_model(shape_uvb__blue_reg$sd$linear_subsistence, type="pred", terms=c("UV_sd_r [all]", "subsistence"), axis.lim=c(0,1)) + xlab("sd UV-B [mW/m"^"2"~"]") + ylab("Probability of 'blue'") + ggtitle("linear + subsistence") + theme(legend.position=c(0.75, 0.25)),
   ncol=3);
 dev.off();
+
+# tiff(paste0("./paper/fig_shape_uvb_blue_subst.tiff"), width=3*3, height=3*2, units="in", res=300, compression="lzw"); # for main paper
+# grid.arrange(
+#   plot_model(shape_uvb__blue_reg$mean$linear,    type="pred", terms="UV_mean_r [all]", axis.lim=c(0,1)) + xlab("mean UV-B [mW/m"^"2"~"]") + ylab("Probability of 'blue'") + ggtitle("linear"),
+#   plot_model(shape_uvb__blue_reg$mean$quadratic, type="pred", terms="UV_mean_r [all]", axis.lim=c(0,1)) + xlab("mean UV-B [mW/m"^"2"~"]") + ylab("Probability of 'blue'") + ggtitle("linear + quadratic"),
+#   plot_model(shape_uvb__blue_reg$mean$linear_subsistence, type="pred", terms=c("UV_mean_r [all]", "subsistence"), axis.lim=c(0,1)) + xlab("mean UV-B [mW/m"^"2"~"]") + ylab("Probability of 'blue'") + ggtitle("linear + subsistence") + theme(legend.position=c(0.25, 0.25)),
+#   plot_model(shape_uvb__blue_reg$sd$linear, type="pred", terms="UV_sd_r [all]", axis.lim=c(0,1)) + xlab("sd UV-B [mW/m"^"2"~"]") + ylab("Probability of 'blue'") + ggtitle("linear"),
+#   grid.rect(gp=gpar(col="white")),
+#   plot_model(shape_uvb__blue_reg$sd$linear_subsistence, type="pred", terms=c("UV_sd_r [all]", "subsistence"), axis.lim=c(0,1)) + xlab("sd UV-B [mW/m"^"2"~"]") + ylab("Probability of 'blue'") + ggtitle("linear + subsistence") + theme(legend.position=c(0.75, 0.25)),
+#   ncol=3);
+# dev.off();
+
 ```
 
 
@@ -11178,7 +11198,7 @@ if( !all(file.exists(file_name)) )
 
 We estimated the phylogenetic signal of 'blue' using three methods:
 
-- Fritz and Purvis' *D* [@fritz_selectivity_2010], as implemented by `phylo.d()` in package `caper`: this has a numeric estimate *D* of the phylogenetic signal and also two *p*-values associated with the hypotheses (*D*=0) and (*D*=1), respectively,
+- Fritz and Purvis' *D* [@fritz_selectivity_2010], as implemented by `phylo.d()` in package `caper`: this has a numeric estimate *D* of the phylogenetic signal and also two *p*-values associated with the hypotheses (*D*=0 that the character is *"clumped"*, evolving on the phylogeny under a Brownian motion model) and (*D*=1 that the character is *random* wrt the phylogeny), respectively,
 - *logistic phylogenetic regression* with no predictors, as implemented by:
   - `binaryPGLMM()` in package `ape`, which gives the "phylogenetic signal measured as the scalar magnitude of the phylogenetic variance-covariance matrix s2 * V" (denoted here *s2*) and the *p*-value of the "likelihood ratio test of the hypothesis H0 that s2 = 0", and
   - `phyloglm()` in package `phylolm` using @IG2010's method, which uses "alpha to estimate the level of phylogenetic correlation" (denoted here *α*); this might come with a warning if the *α* is too close to its limits, in which case this probably means that the phylogenetic signal is negligible.
@@ -11187,9 +11207,9 @@ We estimated the phylogenetic signal of 'blue' using three methods:
 tmp_no_mcmc <- physig_blue[ !(physig_blue$tree %in% c("MCMC (summary)", "MCMC (posterior)")), ];
 tmp_no_mcmc$tree <- ifelse(tmp_no_mcmc$tree == "Glottolog (original)", "Original", ifelse(tmp_no_mcmc$tree == "Glottolog (exponential)", "Exponential", ifelse(tmp_no_mcmc$tree == "Glottolog (ultrametric)", "Ultrametric", tmp_no_mcmc$tree)));
 tmp_no_mcmc$error[ is.na(tmp_no_mcmc$error) ] <- "-";
-tmp_no_mcmc$D <- sprintf("%s%.2f%s", ifelse(tmp_no_mcmc$D.p0 < 0.05,"**",""), tmp_no_mcmc$D, ifelse(tmp_no_mcmc$D.p0 < 0.05,"**",""));
-tmp_no_mcmc$D.p0 <- sprintf("%s%.2g%s%s", ifelse(tmp_no_mcmc$D.p0 < 0.05,"**",""), tmp_no_mcmc$D.p0, ifelse(tmp_no_mcmc$D.p0 < 0.01, "^⭑⭑^", ifelse(tmp_no_mcmc$D.p0 < 0.05, "^⭑^", "")), ifelse(tmp_no_mcmc$D.p0 < 0.05,"**",""));
-tmp_no_mcmc$D.p1 <- sprintf("%.2g%s", tmp_no_mcmc$D.p1, ifelse(tmp_no_mcmc$D.p1 < 0.01, "^⭑⭑^", ifelse(tmp_no_mcmc$D.p1 < 0.05, "^⭑^","")));
+tmp_no_mcmc$D <- sprintf("%s%.2f%s", ifelse(tmp_no_mcmc$D.p1 < 0.05,"**",""), tmp_no_mcmc$D, ifelse(tmp_no_mcmc$D.p1 < 0.05,"**",""));
+tmp_no_mcmc$D.p0 <- sprintf("%.2g%s", tmp_no_mcmc$D.p0, ifelse(tmp_no_mcmc$D.p0 < 0.01, "^⭑⭑^", ifelse(tmp_no_mcmc$D.p0 < 0.05, "^⭑^", "")));
+tmp_no_mcmc$D.p1 <- sprintf("%s%.2g%s%s", ifelse(tmp_no_mcmc$D.p1 < 0.05,"**",""), tmp_no_mcmc$D.p1, ifelse(tmp_no_mcmc$D.p1 < 0.01, "^⭑⭑^", ifelse(tmp_no_mcmc$D.p1 < 0.05, "^⭑^","")), ifelse(tmp_no_mcmc$D.p1 < 0.05,"**",""));
 tmp_no_mcmc$PGLMM.s2 <- sprintf("%s%.2f%s", ifelse(tmp_no_mcmc$PGLMM.s2.p0 < 0.05, "**", ""), tmp_no_mcmc$PGLMM.s2, ifelse(tmp_no_mcmc$PGLMM.s2.p0 < 0.05, "**", ""));
 tmp_no_mcmc$PGLMM.s2.p0 <- sprintf("%s%.2g%s%s", ifelse(tmp_no_mcmc$PGLMM.s2.p0 < 0.05, "**", ""), tmp_no_mcmc$PGLMM.s2.p0, ifelse(tmp_no_mcmc$PGLMM.s2.p0 < 0.01, "^⭑⭑^", ifelse(tmp_no_mcmc$PGLMM.s2.p0 < 0.05, "^⭑^", "")), ifelse(tmp_no_mcmc$PGLMM.s2.p0 < 0.05, "**", ""));
 tmp_no_mcmc$IG10.alpha <- sprintf("%.2f", tmp_no_mcmc$IG10.alpha);
